@@ -3,11 +3,11 @@ import { useState } from "react";
 export default function GeneralInfo() {
     const [hasEdits, setHasEdits] = useState(false);
 
-    function logEdit() {
+    function handleEdit() {
         setHasEdits(true);
     }
 
-    function saveGeneral(e) {
+    function handleSave(e) {
         e.preventDefault();
         setHasEdits(false);
         //update the output
@@ -15,11 +15,11 @@ export default function GeneralInfo() {
     
     return (
         <form>
-            <label>Name: <input type="text" autoComplete="name" onChange={logEdit}></input></label>
-            <label>Title: <input type="text" autoComplete="organization-title" onChange={logEdit}></input></label>
-            <label>Email: <input type="email" autoComplete="email" onChange={logEdit}></input></label>
-            <label>Phone: <input type="tel" autoComplete="tel" onChange={logEdit}></input></label>
-            <button type="submit" disabled={!hasEdits} onClick={saveGeneral}>Save</button>
+            <label>Name: <input type="text" autoComplete="name" onChange={handleEdit}></input></label>
+            <label>Title: <input type="text" autoComplete="organization-title" onChange={handleEdit}></input></label>
+            <label>Email: <input type="email" autoComplete="email" onChange={handleEdit}></input></label>
+            <label>Phone: <input type="tel" autoComplete="tel" onChange={handleEdit}></input></label>
+            <button type="submit" disabled={!hasEdits} onClick={handleSave}>Save</button>
         </form>
     )
 }
