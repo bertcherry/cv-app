@@ -48,35 +48,24 @@ export default function Data() {
         setWorkList([...workList, work()]);
     }
 
-    function editWorkValue(itemId, name) {
-        const itemForm = document.getElementById(itemId);
-        let editedItem = workList.find(workItem => workItem.id === itemId);
-        editedItem[name] = itemForm.elements[name].value;
+    function editWorkValue(e, itemId) {
+        setWorkList(
+            workList.map(workItem => {
+                if (workItem.id === itemId) {
+                    return {
+                        ...workItem,
+                        [e.target.name]: e.target.value,
+                    }
+                } else {
+                    return workItem;
+                }
+            }));
         if (!editedIds.includes(itemId)) {
             setEditedIds([...editedIds, itemId]);
         }
     }
 
     function saveWork(itemId) {
-        const itemForm = document.getElementById(itemId);
-        let updatedItem = workList.find(workItem => workItem.id === itemId);
-        updatedItem.company = itemForm.elements["company"].value;
-        updatedItem.title = itemForm.elements["title"].value;
-        updatedItem.location = itemForm.elements["location"].value;
-        updatedItem.description = itemForm.elements["description"].value;
-        updatedItem.startDate = itemForm.elements["startDate"].value;
-        updatedItem.endDate = itemForm.elements["endDate"].value;
-        updatedItem.edited = false;
-        console.log(updatedItem);
-        setWorkList(
-            workList.map(workItem => {
-                if (workItem.id === itemId) {
-                    return updatedItem;
-                } else {
-                    return workItem;
-                }
-            })
-        );
         setEditedIds(editedIds.filter(element => element !== itemId));
     }
         
