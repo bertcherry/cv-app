@@ -14,7 +14,9 @@ export default function WorkExperience( { workList, createWork, saveWork, delete
 
     function handleEdit() {
         //set the date changes to also count as having edits and therefore being saveable
+        //set the hasEdits to be higher in the work data structure so it only enables "save" for the appropriate workItem
         setHasEdits(true);
+        //set the values to edit the input field display as they're being edited
     }
 
     function handleSave(e, itemId) {
@@ -27,6 +29,7 @@ export default function WorkExperience( { workList, createWork, saveWork, delete
         deleteWork(itemId);
     }
 
+    //set the input fields to display the values of each saved section on re-render
     const workItems = workList.map(workItem =>
             <form key={workItem.id} id={workItem.id}>
                 <label>Company Name: <input name="company" type="text" autoComplete="organization" onChange={handleEdit}></input></label>
