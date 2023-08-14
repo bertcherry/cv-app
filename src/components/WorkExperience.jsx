@@ -1,11 +1,11 @@
-export default function WorkExperience( { editedIds, workList, createWork, editWorkValue, saveWork, deleteWork } ) {
+export default function WorkExperience( { editedIds, workList, createWork, editWork, saveWork, deleteWork } ) {
     function handleNew(e) {
         e.preventDefault();
         createWork();
     }
 
     function handleEdit(e, itemId) {
-        editWorkValue(e, itemId);
+        editWork(e, itemId);
     }
 
     function handleSave(e, itemId) {
@@ -17,7 +17,6 @@ export default function WorkExperience( { editedIds, workList, createWork, editW
         deleteWork(itemId);
     }
 
-    //make the displayed values their value from state
     const workItems = workList.map(workItem =>
             <form key={workItem.id} id={workItem.id}>
                 <label>Company Name: <input name="company" type="text" autoComplete="organization" onChange={(e) => handleEdit(e, workItem.id)} value={workItem.company}></input></label>

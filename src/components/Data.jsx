@@ -48,7 +48,7 @@ export default function Data() {
         setWorkList([...workList, work()]);
     }
 
-    function editWorkValue(e, itemId) {
+    function editWork(e, itemId) {
         setWorkList(
             workList.map(workItem => {
                 if (workItem.id === itemId) {
@@ -75,7 +75,7 @@ export default function Data() {
 
     return (
         <div>
-            <Inputs info={info} editGeneral={editGeneral} saveGeneral={saveGeneral} editedIds={editedIds} workList={workList} createWork={createWork} editWorkValue={editWorkValue} saveWork={saveWork} deleteWork={deleteWork}></Inputs>
+            <Inputs info={info} editGeneral={editGeneral} saveGeneral={saveGeneral} editedIds={editedIds} workList={workList} createWork={createWork} editWork={editWork} saveWork={saveWork} deleteWork={deleteWork}></Inputs>
         </div>
     )
 }
