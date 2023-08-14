@@ -3,6 +3,8 @@ import uuid from "react-uuid";
 import Inputs from "./Inputs"
 
 export default function Data() {
+    const [editedIds, setEditedIds] = useState([]);
+
     //Work Experience props and logic
     const work = () => {
         return {
@@ -13,6 +15,7 @@ export default function Data() {
             description: '',
             startDate: '',
             endDate: '',
+            edited: false,
         }
     }
     
@@ -20,6 +23,15 @@ export default function Data() {
 
     function createWork() {
         setWorkList([...workList, work()]);
+    }
+
+    function editWorkValue(itemId, name) {
+        const itemForm = document.getElementById(itemId);
+        let editedItem = workList.find(workItem => workItem.id === itemId);
+        editedItem[name] = itemForm.elements[name].value;
+        if (!editedIds.includes(itemId)) {
+            setEditedIds([...editedIds, itemId]);
+        }
     }
 
     function saveWork(itemId) {
@@ -31,10 +43,18 @@ export default function Data() {
         updatedItem.description = itemForm.elements["description"].value;
         updatedItem.startDate = itemForm.elements["startDate"].value;
         updatedItem.endDate = itemForm.elements["endDate"].value;
-        setWorkList([
-            workList.filter(workItem => workItem.id !== itemId), 
-            updatedItem
-        ]);
+        updatedItem.edited = false;
+        console.log(updatedItem);
+        setWorkList(
+            workList.map(workItem => {
+                if (workItem.id === itemId) {
+                    return updatedItem;
+                } else {
+                    return workItem;
+                }
+            })
+        );
+        setEditedIds(editedIds.filter(element => element !== itemId));
     }
         
     function deleteWork(itemId) {
@@ -43,7 +63,7 @@ export default function Data() {
 
     return (
         <div>
-            <Inputs workList={workList} createWork={createWork} saveWork={saveWork} deleteWork={deleteWork}></Inputs>
+            <Inputs editedIds={editedIds} workList={workList} createWork={createWork} editWorkValue={editWorkValue} saveWork={saveWork} deleteWork={deleteWork}></Inputs>
         </div>
     )
 }

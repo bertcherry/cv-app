@@ -3,7 +3,7 @@ import InputSection from "./InputSection";
 import GeneralInfo from "./GeneralInfo";
 import WorkExperience from "./WorkExperience";
 
-export default function Inputs( {workList, createWork, saveWork, deleteWork }) {
+export default function Inputs( {editedIds, workList, createWork, editWorkValue, saveWork, deleteWork }) {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
         <div className='inputs'>
@@ -11,7 +11,7 @@ export default function Inputs( {workList, createWork, saveWork, deleteWork }) {
                 <GeneralInfo></GeneralInfo>
             </InputSection>
             <InputSection title='Work Experience' isActive={activeIndex === 1} onShow={() => setActiveIndex(1)}>
-                <WorkExperience workList={workList} createWork={createWork} saveWork={saveWork} deleteWork={deleteWork}></WorkExperience>
+                <WorkExperience editedIds={editedIds} workList={workList} createWork={createWork} editWorkValue={editWorkValue} saveWork={saveWork} deleteWork={deleteWork}></WorkExperience>
             </InputSection>
             <InputSection title='Education' isActive={activeIndex === 2} onShow={() => setActiveIndex(2)}>
                 <></>
