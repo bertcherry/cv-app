@@ -7,6 +7,7 @@ export default function Data() {
 
     //General Info
     const [info, setInfo] = useState({
+        id: 'generalInfo',
         name: '',
         title: '',
         email: '',
@@ -17,12 +18,14 @@ export default function Data() {
         setInfo({
             ...info,
             [e.target.name]: e.target.value
-        })
+        });
+        if (!editedIds.includes('generalInfo')) {
+            setEditedIds([...editedIds, 'generalInfo']);
+        }
     }
 
-    //in current app structure, edit and save don't actually have a different function
     function saveGeneral() {
-        
+        setEditedIds(editedIds.filter(element => element !== 'generalInfo'));
     }
 
     //Work Experience props and logic
