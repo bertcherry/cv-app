@@ -1,21 +1,23 @@
-export default function WorkExperience( { editedIds, workList, createWork, editWork, saveWork, deleteWork } ) {
+export default function WorkExperience( { editedIds, dataList, createWork, editData, saveData, deleteData } ) {
     function handleNew(e) {
         e.preventDefault();
         createWork();
     }
 
     function handleEdit(e, itemId) {
-        editWork(e, itemId);
+        editData(e, itemId);
     }
 
     function handleSave(e, itemId) {
         e.preventDefault();
-        saveWork(itemId);
+        saveData(itemId);
     }
     
     function handleDelete(itemId) {
-        deleteWork(itemId);
+        deleteData(itemId);
     }
+
+    const workList = dataList.filter(dataItem => dataItem.type === 'work');
 
     const workItems = workList.map(workItem =>
             <form key={workItem.id} id={workItem.id}>

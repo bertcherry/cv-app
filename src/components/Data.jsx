@@ -3,35 +3,10 @@ import uuid from "react-uuid";
 import Inputs from "./Inputs"
 
 export default function Data() {
-    const [editedIds, setEditedIds] = useState([]);
-
-    //General Info
-    const [info, setInfo] = useState({
-        id: 'generalInfo',
-        name: '',
-        title: '',
-        email: '',
-        tel: '',
-    });
-
-    function editGeneral(e) {
-        setInfo({
-            ...info,
-            [e.target.name]: e.target.value
-        });
-        if (!editedIds.includes('generalInfo')) {
-            setEditedIds([...editedIds, 'generalInfo']);
-        }
-    }
-
-    function saveGeneral() {
-        setEditedIds(editedIds.filter(element => element !== 'generalInfo'));
-    }
-
-    //Work Experience props and logic
     const work = () => {
         return {
             id: uuid(),
+            type: 'work',
             company: '',
             title: '',
             location: '',
@@ -41,23 +16,35 @@ export default function Data() {
             edited: false,
         }
     }
-    
-    const [workList, setWorkList] = useState([work()]);
 
+    const [dataList, setDataList] = useState([
+        {
+            id: uuid(),
+            type: 'general',
+            name: '',
+            title: '',
+            email: '',
+            tel: '',
+        }, 
+        work()
+    ]);
+
+    const [editedIds, setEditedIds] = useState([]);
+    
     function createWork() {
-        setWorkList([...workList, work()]);
+        setDataList([...dataList, work()]);
     }
 
-    function editWork(e, itemId) {
-        setWorkList(
-            workList.map(workItem => {
-                if (workItem.id === itemId) {
+    function editData(e, itemId) {
+        setDataList(
+            dataList.map(dataItem => {
+                if (dataItem.id === itemId) {
                     return {
-                        ...workItem,
+                        ...dataItem,
                         [e.target.name]: e.target.value,
                     }
                 } else {
-                    return workItem;
+                    return dataItem;
                 }
             }));
         if (!editedIds.includes(itemId)) {
@@ -65,17 +52,17 @@ export default function Data() {
         }
     }
 
-    function saveWork(itemId) {
+    function saveData(itemId) {
         setEditedIds(editedIds.filter(element => element !== itemId));
     }
         
-    function deleteWork(itemId) {
-        setWorkList(workList.filter(workItem => workItem.id !== itemId));
+    function deleteData(itemId) {
+        setDataList(dataList.filter(dataItem => dataItem.id !== itemId));
     }
 
     return (
         <div>
-            <Inputs info={info} editGeneral={editGeneral} saveGeneral={saveGeneral} editedIds={editedIds} workList={workList} createWork={createWork} editWork={editWork} saveWork={saveWork} deleteWork={deleteWork}></Inputs>
+            <Inputs editedIds={editedIds} dataList={dataList} createWork={createWork} editData={editData} saveData={saveData} deleteData={deleteData}></Inputs>
         </div>
     )
 }

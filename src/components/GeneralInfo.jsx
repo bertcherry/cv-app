@@ -1,14 +1,16 @@
-export default function GeneralInfo( { info, editedIds, editGeneral, saveGeneral } ) {
+export default function GeneralInfo( { dataList, editedIds, editData, saveData } ) {
+    const info = dataList.find(item => item.type === 'general');
+
     function handleEdit(e) {
-        editGeneral(e);
+        editData(e, info.id);
     }
 
     function handleSave(e) {
         e.preventDefault();
-        saveGeneral();
+        saveData(info.id);
         //update the output - done by lifting the state to the top
     }
-    
+
     //if this isn't edited (in editedIds), display the output html and edit button
     return (
         <form id={info.id}>
