@@ -1,31 +1,15 @@
 import { useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import uuid from "react-uuid";
 
-export default function WorkExperience() {
-    const work = () => {
-        return {
-            id: uuid(),
-            company: '',
-            title: '',
-            location: '',
-            description: '',
-            startDate: '',
-            endDate: '',
-        }
-    }
-
-    const [workList, setWorkList] = useState([work()]);
-        //initialization is inconsistent - sometimes the first form value gets its uuid and other times doesn't
-        //values reset on "show" -- hold them higher up?
+export default function WorkExperience( { workList, createWork, saveWork, deleteWork } ) {
     const [hasEdits, setHasEdits] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
 
     function handleNew(e) {
         e.preventDefault();
-        setWorkList([...workList, work()]);
+        createWork();
     }
 
     function handleEdit() {
@@ -36,26 +20,11 @@ export default function WorkExperience() {
     function handleSave(e, itemId) {
         e.preventDefault();
         setHasEdits(false);
-        const itemForm = document.getElementById(itemId);
-        let updatedItem = workList.find(workItem => workItem.id === itemId);
-        updatedItem.company = itemForm.elements["company"].value;
-        updatedItem.title = itemForm.elements["title"].value;
-        updatedItem.location = itemForm.elements["location"].value;
-        updatedItem.description = itemForm.elements["description"].value;
-        updatedItem.startDate = itemForm.elements["startDate"].value;
-        updatedItem.endDate = itemForm.elements["endDate"].value;
-        setWorkList([
-            workList.filter(workItem => workItem.id !== itemId), 
-            updatedItem
-        ])
-        //everything anchored to the id for the workItem based on uuId
-        //figure out how to handle the default submit behavior when passing event info upward
-        //update the output - needs to be handled higher
+        saveWork(itemId);
     }
     
     function handleDelete(itemId) {
-        setWorkList(workList.filter(workItem => workItem.id !== itemId));
-        console.log(workList);
+        deleteWork(itemId);
     }
 
     const workItems = workList.map(workItem =>
