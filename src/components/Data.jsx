@@ -13,7 +13,16 @@ export default function Data() {
             description: '',
             startDate: '',
             endDate: '',
-            edited: false,
+        }
+    }
+
+    const education = () => {
+        return {
+            id: uuid(),
+            type: 'education',
+            institution: '',
+            title: '',
+            date: ''
         }
     }
 
@@ -26,13 +35,18 @@ export default function Data() {
             email: '',
             tel: '',
         }, 
-        work()
+        work(),
+        education()
     ]);
 
     const [editedIds, setEditedIds] = useState([]);
     
     function createWork() {
         setDataList([...dataList, work()]);
+    }
+
+    function createEducation() {
+        setDataList([...dataList, education()]);
     }
 
     function editData(e, itemId) {
@@ -62,7 +76,7 @@ export default function Data() {
 
     return (
         <div>
-            <Inputs editedIds={editedIds} dataList={dataList} createWork={createWork} editData={editData} saveData={saveData} deleteData={deleteData}></Inputs>
+            <Inputs editedIds={editedIds} dataList={dataList} createWork={createWork} createEducation={createEducation} editData={editData} saveData={saveData} deleteData={deleteData}></Inputs>
         </div>
     )
 }

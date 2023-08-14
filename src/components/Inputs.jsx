@@ -2,8 +2,9 @@ import { useState } from "react";
 import InputSection from "./InputSection";
 import GeneralInfo from "./GeneralInfo";
 import WorkExperience from "./WorkExperience";
+import Education from "./Education";
 
-export default function Inputs( {dataList, editedIds, createWork, editData, saveData, deleteData }) {
+export default function Inputs( {dataList, editedIds, createWork, createEducation, editData, saveData, deleteData }) {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
         <div className='inputs'>
@@ -14,7 +15,7 @@ export default function Inputs( {dataList, editedIds, createWork, editData, save
                 <WorkExperience editedIds={editedIds} dataList={dataList} createWork={createWork} editData={editData} saveData={saveData} deleteData={deleteData}></WorkExperience>
             </InputSection>
             <InputSection title='Education' isActive={activeIndex === 2} onShow={() => setActiveIndex(2)}>
-                <></>
+                <Education editedIds={editedIds} dataList={dataList} createEducation={createEducation} editData={editData} saveData={saveData} deleteData={deleteData}></Education>
             </InputSection>
         </div>
     )
