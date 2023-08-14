@@ -5,6 +5,26 @@ import Inputs from "./Inputs"
 export default function Data() {
     const [editedIds, setEditedIds] = useState([]);
 
+    //General Info
+    const [info, setInfo] = useState({
+        name: '',
+        title: '',
+        email: '',
+        tel: '',
+    });
+
+    function editGeneral(e) {
+        setInfo({
+            ...info,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    //in current app structure, edit and save don't actually have a different function
+    function saveGeneral() {
+        
+    }
+
     //Work Experience props and logic
     const work = () => {
         return {
@@ -63,7 +83,7 @@ export default function Data() {
 
     return (
         <div>
-            <Inputs editedIds={editedIds} workList={workList} createWork={createWork} editWorkValue={editWorkValue} saveWork={saveWork} deleteWork={deleteWork}></Inputs>
+            <Inputs info={info} editGeneral={editGeneral} saveGeneral={saveGeneral} editedIds={editedIds} workList={workList} createWork={createWork} editWorkValue={editWorkValue} saveWork={saveWork} deleteWork={deleteWork}></Inputs>
         </div>
     )
 }
