@@ -1,6 +1,9 @@
 import { useState } from "react"
 import uuid from "react-uuid";
-import Inputs from "./Inputs"
+import Section from "./Section";
+import GeneralInfo from "./GeneralInfo";
+import WorkExperience from "./WorkExperience";
+import Education from "./Education";
 
 export default function Data() {
     const work = () => {
@@ -77,7 +80,15 @@ export default function Data() {
 
     return (
         <div>
-            <Inputs editedIds={editedIds} dataList={dataList} createWork={createWork} createEducation={createEducation} editData={editData} changeData={changeData} saveData={saveData} deleteData={deleteData}></Inputs>
+            <Section title='General Information'>
+                <GeneralInfo dataList={dataList} editedIds={editedIds} editData={editData} changeData={changeData} saveData={saveData}></GeneralInfo>
+            </Section>
+            <Section title='Work Experience'>
+                <WorkExperience editedIds={editedIds} dataList={dataList} createWork={createWork} editData={editData} changeData={changeData} saveData={saveData} deleteData={deleteData}></WorkExperience>
+            </Section>
+            <Section title='Education'>
+                <Education editedIds={editedIds} dataList={dataList} createEducation={createEducation} editData={editData} changeData={changeData} saveData={saveData} deleteData={deleteData}></Education>
+            </Section>
         </div>
     )
 }
