@@ -35,14 +35,14 @@ export default function Education( { editedIds, dataList, createEducation, editD
                 </form>
             )
         else return (
-            <>
+            <div key={educationItem.id}>
                 <div>
                     <h3>{educationItem.institution}</h3>
                     <div>{educationItem.title}</div>
                     <div>{educationItem.date}</div>
                 </div>
                 <button onClick={() => handleEdit(educationItem.id)}>Edit</button>
-            </>
+            </div>
     )});
 
     return (
