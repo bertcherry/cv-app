@@ -49,7 +49,11 @@ export default function Data() {
         setDataList([...dataList, education()]);
     }
 
-    function editData(e, itemId) {
+    function editData(itemId) {
+        setEditedIds([...editedIds, itemId]);
+    }
+
+    function changeData(e, itemId) {
         setDataList(
             dataList.map(dataItem => {
                 if (dataItem.id === itemId) {
@@ -61,9 +65,6 @@ export default function Data() {
                     return dataItem;
                 }
             }));
-        if (!editedIds.includes(itemId)) {
-            setEditedIds([...editedIds, itemId]);
-        }
     }
 
     function saveData(itemId) {
@@ -76,7 +77,7 @@ export default function Data() {
 
     return (
         <div>
-            <Inputs editedIds={editedIds} dataList={dataList} createWork={createWork} createEducation={createEducation} editData={editData} saveData={saveData} deleteData={deleteData}></Inputs>
+            <Inputs editedIds={editedIds} dataList={dataList} createWork={createWork} createEducation={createEducation} editData={editData} changeData={changeData} saveData={saveData} deleteData={deleteData}></Inputs>
         </div>
     )
 }
