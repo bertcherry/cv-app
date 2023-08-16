@@ -25,8 +25,8 @@ export default function WorkExperience( { editedIds, dataList, createWork, editD
                         <textarea id="description" name="description" onChange={(e) => changeData(e, workItem.id)} value={workItem.description}></textarea>
                     </div>
                     <div className="button-wrapper">
-                        <button onClick={() => deleteData(workItem.id)}>Delete</button>
-                        <button type="submit" disabled={!editedIds.includes(workItem.id)} onClick={(e) => handleSave(e, workItem.id)}>Save</button>
+                        <button disabled={workList.length === 1} onClick={() => deleteData(workItem.id)}>Delete</button>
+                        <button type="submit" onClick={(e) => handleSave(e, workItem.id)}>Save</button>
                     </div>   
                 </form>
             )

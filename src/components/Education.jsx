@@ -19,8 +19,8 @@ export default function Education( { editedIds, dataList, createEducation, editD
                     <label>Title of Study/Degree: <input name="title" type="text" onChange={(e) => changeData(e, educationItem.id)} value={educationItem.title}></input></label>
                     <label>Date of Study: <input name="date" type="text" onChange={(e) => changeData(e, educationItem.id)} value={educationItem.date}/></label>
                     <div className="button-wrapper">
-                        <button onClick={() => deleteData(educationItem.id)}>Delete</button>
-                        <button type="submit" disabled={!editedIds.includes(educationItem.id)} onClick={(e) => handleSave(e, educationItem.id)}>Save</button>
+                        <button disabled={educationList.length === 1} onClick={() => deleteData(educationItem.id)}>Delete</button>
+                        <button type="submit" onClick={(e) => handleSave(e, educationItem.id)}>Save</button>
                     </div>
                 </form>
             )
