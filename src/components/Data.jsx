@@ -79,7 +79,7 @@ export default function Data() {
     }
 
     return (
-        <div>
+        <>
             <Section title='General Information'>
                 <GeneralInfo dataList={dataList} editedIds={editedIds} editData={editData} changeData={changeData} saveData={saveData}></GeneralInfo>
             </Section>
@@ -89,6 +89,6 @@ export default function Data() {
             <Section title='Education'>
                 <Education editedIds={editedIds} dataList={dataList} createEducation={createEducation} editData={editData} changeData={changeData} saveData={saveData} deleteData={deleteData}></Education>
             </Section>
-        </div>
+        </>
     )
 }

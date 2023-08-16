@@ -21,17 +21,21 @@ export default function GeneralInfo( { dataList, editedIds, editData, changeData
                 <label>Title: <input name="title" type="text" autoComplete="organization-title" onChange={handleChange} value={info.title}></input></label>
                 <label>Email: <input name="email" type="email" autoComplete="email" onChange={handleChange} value={info.email}></input></label>
                 <label>Phone: <input name="tel" type="tel" autoComplete="tel" onChange={handleChange} value={info.tel}></input></label>
-                <button type="submit" onClick={handleSave}>Save</button>
+                <div className="button-wrapper">
+                    <button type="submit" onClick={handleSave}>Save</button>
+                </div>
             </form>
         )
     } else {
         return (
             <>
-                <div>
+                <div className="general">
                     <h3>{info.name}</h3>
                     <div>{info.title}</div>
-                    <div>{info.email}</div>
-                    <div>{info.tel}</div>
+                    <div>
+                        <div>{info.email}</div>
+                        <div>{info.tel}</div>
+                    </div>
                 </div>
                 <button onClick={handleEdit}>Edit</button>
             </>

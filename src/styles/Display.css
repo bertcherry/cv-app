@@ -1,0 +1,33 @@
+@import "Theme.css";
+
+.general {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.general > * {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.display {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.display-button {
+    flex: 1;
+    text-align: end;
+}
+
+.work-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+}

@@ -30,18 +30,20 @@ export default function Education( { editedIds, dataList, createEducation, editD
                     <label>Institution Name: <input name="institution" type="text" onChange={(e) => handleChange(e, educationItem.id)} value={educationItem.institution}></input></label>
                     <label>Title of Study/Degree: <input name="title" type="text" onChange={(e) => handleChange(e, educationItem.id)} value={educationItem.title}></input></label>
                     <label>Date of Study: <input name="date" type="text" onChange={(e) => handleChange(e, educationItem.id)} value={educationItem.date}/></label>
-                    <button onClick={() => handleDelete(educationItem.id)}>Delete</button>
-                    <button type="submit" disabled={!editedIds.includes(educationItem.id)} onClick={(e) => handleSave(e, educationItem.id)}>Save</button>
+                    <div className="button-wrapper">
+                        <button onClick={() => handleDelete(educationItem.id)}>Delete</button>
+                        <button type="submit" disabled={!editedIds.includes(educationItem.id)} onClick={(e) => handleSave(e, educationItem.id)}>Save</button>
+                    </div>
                 </form>
             )
         else return (
-            <div key={educationItem.id}>
-                <div>
-                    <h3>{educationItem.institution}</h3>
-                    <div>{educationItem.title}</div>
-                    <div>{educationItem.date}</div>
+            <div key={educationItem.id} className="display">
+                <h3>{educationItem.institution}</h3>
+                <div>{educationItem.title}</div>
+                <div>{educationItem.date}</div>
+                <div className="display-button">
+                    <button onClick={() => handleEdit(educationItem.id)}>Edit</button>
                 </div>
-                <button onClick={() => handleEdit(educationItem.id)}>Edit</button>
             </div>
     )});
 

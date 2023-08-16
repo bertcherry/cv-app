@@ -1,0 +1,16 @@
+@import "Theme.css";
+
+.section {
+    background-color: var(--white);
+    border: solid 3px var(--green);  
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.section > h2 {
+    color: var(--brown);
+    margin-bottom: 10px;
+}

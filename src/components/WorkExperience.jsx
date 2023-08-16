@@ -30,26 +30,36 @@ export default function WorkExperience( { editedIds, dataList, createWork, editD
                     <label>Company Name: <input name="company" type="text" autoComplete="organization" onChange={(e) => handleChange(e, workItem.id)} value={workItem.company}></input></label>
                     <label>Job Title: <input name="title" type="text" onChange={(e) => handleChange(e, workItem.id)} value={workItem.title}></input></label>
                     <label>Location: <input name="location" type="text" onChange={(e) => handleChange(e, workItem.id)} value={workItem.location}></input></label>
-                    <label htmlFor="description">Description:</label>
-                    <textarea id="description" name="description" onChange={(e) => handleChange(e, workItem.id)} value={workItem.description}></textarea>
                     <label>Start Date: <input name="startDate" type="text" onChange={(e) => handleChange(e, workItem.id)} value={workItem.startDate}/></label>
                     <label>End Date: <input name="endDate" type="text" onChange={(e) => handleChange(e, workItem.id)} value={workItem.endDate}/></label>
-                    <button onClick={() => handleDelete(workItem.id)}>Delete</button>
-                    <button type="submit" disabled={!editedIds.includes(workItem.id)} onClick={(e) => handleSave(e, workItem.id)}>Save</button>
+                    <div className="area-wrapper">
+                        <label htmlFor="description">Description:</label>
+                        <textarea id="description" name="description" onChange={(e) => handleChange(e, workItem.id)} value={workItem.description}></textarea>
+                    </div>
+                    <div className="button-wrapper">
+                        <button onClick={() => handleDelete(workItem.id)}>Delete</button>
+                        <button type="submit" disabled={!editedIds.includes(workItem.id)} onClick={(e) => handleSave(e, workItem.id)}>Save</button>
+                    </div>   
                 </form>
             )
         } else {
             return (
-                <div key={workItem.id}>
-                    <div>
+                <div key={workItem.id} className="display">
+                    <div className="work-wrapper">
                         <h3>{workItem.company}</h3>
-                        <div>{workItem.title}</div>
-                        <div>{workItem.location}</div>
-                        <div>{workItem.description}</div>
-                        <div>{workItem.startDate}</div>
+                        <div className="work-wrapper">
+                            <div>{workItem.title}</div>
+                            <div>{workItem.location}</div>
+                        </div>
+                    </div>
+                    <div className="work-wrapper">
+                        <div>{workItem.startDate}</div> - 
                         <div>{workItem.endDate}</div>
                     </div>
-                    <button onClick={() => handleEdit(workItem.id)}>Edit</button>
+                    <div>{workItem.description}</div>
+                    <div className="display-button">
+                        <button onClick={() => handleEdit(workItem.id)}>Edit</button>
+                    </div>
                 </div>
         )}});
 

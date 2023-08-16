@@ -1,0 +1,29 @@
+@import "Theme.css";
+
+/* Use grid instead and have description take the full width of grid segments as a unique child (insert wrapper)*/
+/* Wrap the delete and save buttons on the form so they appear next to each other -- take delete to the higher level?*/
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    border: 2px dashed var(--green);
+    border-radius: 3px;
+    padding: 10px;
+}
+
+form > * {
+    min-width: 200px;
+    flex: 1 1 auto;
+}
+
+.area-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
