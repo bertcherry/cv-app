@@ -42,14 +42,18 @@ export default function Data() {
         education()
     ]);
 
-    const [editedIds, setEditedIds] = useState([]);
+    const [editedIds, setEditedIds] = useState([dataList.at(0).id, dataList.at(1).id, dataList.at(2).id]);
     
     function createWork() {
-        setDataList([...dataList, work()]);
+        const newWork = work();
+        setDataList([...dataList, newWork]);
+        setEditedIds([...editedIds, newWork.id]);
     }
 
     function createEducation() {
-        setDataList([...dataList, education()]);
+        const newEducation = education();
+        setDataList([...dataList, newEducation]);
+        setEditedIds([...editedIds, newEducation.id]);
     }
 
     function editData(itemId) {
