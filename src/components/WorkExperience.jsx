@@ -4,21 +4,9 @@ export default function WorkExperience( { editedIds, dataList, createWork, editD
         createWork();
     }
 
-    function handleChange(e, itemId) {
-        changeData(e, itemId);
-    }
-
-    function handleEdit(itemId) {
-        editData(itemId);
-    }
-
     function handleSave(e, itemId) {
         e.preventDefault();
         saveData(itemId);
-    }
-    
-    function handleDelete(itemId) {
-        deleteData(itemId);
     }
 
     const workList = dataList.filter(dataItem => dataItem.type === 'work');
@@ -27,17 +15,17 @@ export default function WorkExperience( { editedIds, dataList, createWork, editD
         {if (editedIds.includes(workItem.id)) {
             return (
                 <form key={workItem.id} id={workItem.id}>
-                    <label>Company Name: <input name="company" type="text" autoComplete="organization" onChange={(e) => handleChange(e, workItem.id)} value={workItem.company}></input></label>
-                    <label>Job Title: <input name="title" type="text" onChange={(e) => handleChange(e, workItem.id)} value={workItem.title}></input></label>
-                    <label>Location: <input name="location" type="text" onChange={(e) => handleChange(e, workItem.id)} value={workItem.location}></input></label>
-                    <label>Start Date: <input name="startDate" type="text" onChange={(e) => handleChange(e, workItem.id)} value={workItem.startDate}/></label>
-                    <label>End Date: <input name="endDate" type="text" onChange={(e) => handleChange(e, workItem.id)} value={workItem.endDate}/></label>
+                    <label>Company Name: <input name="company" type="text" autoComplete="organization" onChange={(e) => changeData(e, workItem.id)} value={workItem.company}></input></label>
+                    <label>Job Title: <input name="title" type="text" onChange={(e) => changeData(e, workItem.id)} value={workItem.title}></input></label>
+                    <label>Location: <input name="location" type="text" onChange={(e) => changeData(e, workItem.id)} value={workItem.location}></input></label>
+                    <label>Start Date: <input name="startDate" type="text" onChange={(e) => changeData(e, workItem.id)} value={workItem.startDate}/></label>
+                    <label>End Date: <input name="endDate" type="text" onChange={(e) => changeData(e, workItem.id)} value={workItem.endDate}/></label>
                     <div className="area-wrapper">
                         <label htmlFor="description">Description:</label>
-                        <textarea id="description" name="description" onChange={(e) => handleChange(e, workItem.id)} value={workItem.description}></textarea>
+                        <textarea id="description" name="description" onChange={(e) => changeData(e, workItem.id)} value={workItem.description}></textarea>
                     </div>
                     <div className="button-wrapper">
-                        <button onClick={() => handleDelete(workItem.id)}>Delete</button>
+                        <button onClick={() => deleteData(workItem.id)}>Delete</button>
                         <button type="submit" disabled={!editedIds.includes(workItem.id)} onClick={(e) => handleSave(e, workItem.id)}>Save</button>
                     </div>   
                 </form>
@@ -58,7 +46,7 @@ export default function WorkExperience( { editedIds, dataList, createWork, editD
                     </div>
                     <div>{workItem.description}</div>
                     <div className="display-button">
-                        <button onClick={() => handleEdit(workItem.id)}>Edit</button>
+                        <button onClick={() => editData(workItem.id)}>Edit</button>
                     </div>
                 </div>
         )}});
