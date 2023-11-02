@@ -1,3 +1,10 @@
+# cv-app
+Student work from The Odin Project focused on using React components, forms, and state. 
+
+Deployed on Vercel: https://cv-app-iota.vercel.app/
+
+Color theme meets WCAG AAA.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
